@@ -60,9 +60,63 @@
         }
 
         // Put your part two code here ***********************
+            //from class scatter plot
+       // First, we will create some constants to define non-data-related parts of the visualization
 
 
+var margin = 10; 
+var vals = ['x', 'y']; 
+var xVal = vals[0]; 
+var yVal = vals[1]; 
 
+
+// size of graph
+var margin = {top: 2, right: 20, bottom: 30, left: 50};
+var width = 300 - margin.left - margin.right;
+var height = 250 - margin.top - margin.bottom;
+
+
+//ranges
+var x = d3.scaleLinear().range([0, width]);
+var y = d3.scaleLinear().range([height, 0]);
+    
+
+var svg = d3.select("body").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// add the text labels
+
+
+// Get the data
+d3.csv("data/anscombe_II.csv", function (error, data) {
+       if (error) throw error;
+       
+
+  // Scale the range of the data
+    
+    x.domain([0,15]);//get range!!!
+    y.domain([0, d3.max(data, function(d) {return d[yVal];})]); 
+//scatter points
+    svg.selectAll("circle")
+              .data(data)
+              .enter()
+              .append("circle")
+              .attr("r", 2)
+              .attr("cx", function(d) {return x(d[xVal]);})
+            .attr("cy", function(d) {return y(d[yVal]);});
+  // x
+svg.append("g")
+    .attr("transform","translate(0, "+height +")")
+    .call(d3.axisBottom(x));
+  //y
+    svg.append("g")
+        .call(d3.axisLeft(y));
+});
+        
+        
         // Put your part three & four code here ***********************
 
         // Put your part five code here ***********************
