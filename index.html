@@ -95,7 +95,7 @@ d3.csv("data/anscombe_II.csv", function (error, data) {
        if (error) throw error;
 
 
-  // Scale the range of the data
+  // range of data
   x.domain([d3.min(data, function (d) {
         return (d[xVal]);
     }) - 1, d3.max(data, function (d) {
