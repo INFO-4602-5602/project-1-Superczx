@@ -151,15 +151,18 @@ var svg = d3.select("body").append("svg")
 
 // Get the data
 
-
+ 
  var linegraph = d3.line()
     .x(function(d) { return x(d[xVal]); })
     .y(function(d) { return y(d[yVal]); });
 
   // range of data
-
-   x.domain([0,15]);//get range!!!
-    y.domain([0, d3.max(data, function(d) {return d[yVal];})]); 
+ x.domain([d3.min(data, function (d) { return parseFloat(d[xVal]);}) - 1, 
+            d3.max(data, function (d) { return parseFloat(d[xVal]); }) + 1])
+  y.domain([d3.min(data, function (d) { return parseFloat(d[yVal]); }) - 1, 
+            d3.max(data, function (d) { return parseFloat(d[yVal]); }) + 1]);
+   //x.domain([0,15]);//get range!!!
+    //y.domain([0, d3.max(data, function(d) {return d[yVal];})]); 
 //line 
    svg.append('svg:path')
   .attr('d', linegraph(data))
