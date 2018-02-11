@@ -170,7 +170,7 @@ var svg = d3.select("body").append("svg")
 //line 
    svg.append('svg:path')
   .attr('d', linegraph(data))
-  .attr('stroke', 'blue')
+  .attr('stroke', 'black')
   .attr('stroke-width', 2)
   .attr('fill', 'none');
     
@@ -187,6 +187,85 @@ svg.append("g")
         .call(d3.axisLeft(y));
 });
 
+        
+        //part 4
+d3.csv("data/anscombe_II.csv", function (error, data) {
+       if (error) throw error;
+
+        var margin = 10;
+var vals = ['x', 'y'];
+var xVal = vals[0];
+var yVal = vals[1];
+
+
+// size of graph
+var margin = {top: 2, right: 20, bottom: 30, left: 50};
+var width = 300 - margin.left - margin.right;
+var height = 250 - margin.top - margin.bottom;
+
+
+//ranges
+var x = d3.scaleLinear().range([0, width]);
+var y = d3.scaleLinear().range([height, 0]);
+
+
+var svg = d3.select("body").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+var div = d3.select("body").append("div")	
+    .attr("class", "tooltip")				
+    .style("opacity", 0);
+
+
+// Get the data
+
+
+  // range of data
+  x.domain([d3.min(data, function (d) { return parseFloat(d[xVal]);}) - 1, 
+            d3.max(data, function (d) { return parseFloat(d[xVal]); }) + 1])
+  y.domain([d3.min(data, function (d) { return parseFloat(d[yVal]); }) - 1, 
+            d3.max(data, function (d) { return parseFloat(d[yVal]); }) + 1]);
+  //  x.domain([0,15]);//get range!!!
+    //y.domain([0, d3.max(data, function(d) {return d[yVal];})]); 
+//scatter points
+    svg.selectAll("circle")
+              .data(data)
+              .enter()
+              .append("circle")
+              .attr("r", 3)
+              .attr("cx", function(d) {return x(d[xVal]);})
+            .attr("cy", function(d) {return y(d[yVal]);})
+            .on('click', function(d) { 
+                div	.html(d.x + "<br/>"  + d.y)	
+                .style("left", (d3.event.pageX) + "px")		
+                .style("top", (d3.event.pageY - 28) + "px")})
+            .on('mouseover', function(d){
+                d3.select(this)
+                .transition()
+                .attr('fill', 'green')
+                .attr('r',8)})
+            .on('mouseout', function(d) { 
+                d3.select(this)
+                .transition()
+                .attr('fill', 'black')
+                .attr('r',3)});
+  // x-axis
+svg.append("g")
+    .attr("transform","translate(0, "+height +")")
+    .call(d3.axisBottom(x));
+  //y-axis
+    svg.append("g")
+        .call(d3.axisLeft(y));
+});
+
+        
+        
+        
+        
         // Put your part five code here ***********************
 
     </script>
