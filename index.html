@@ -36,25 +36,25 @@
     <script type="text/javascript">
         // Put your part one code here ***********************
         // Leave this to test your data uploading. All data uploading should be above this line
-        d3.csv("/Desktop/project-1-peya8291-master/data/anscombe_I.csv", function(data) {
+        d3.csv("/data/anscombe_I.csv", function(data) {
             console.log(data);
             checkDataset(data);
 
           });
 
-        d3.csv("/Desktop/project-1-peya8291-master/data/anscombe_II.csv", function(data) {
+        d3.csv("/data/anscombe_II.csv", function(data) {
             console.log(data);
             checkDataset(data);
 
           });
 
-        d3.csv("/Desktop/project-1-peya8291-master/data/anscombe_III.csv", function(data) {
+        d3.csv("/data/anscombe_III.csv", function(data) {
             console.log(data);
             checkDataset(data);
 
           });
 
-        d3.csv("/Desktop/project-1-peya8291-master/data/anscombe_IV.csv", function(data) {
+        d3.csv("/data/anscombe_IV.csv", function(data) {
             console.log(data);
             checkDataset(data);
 
@@ -71,7 +71,7 @@
         // Put your part two code here ***********************
 
           // Get the data
-          d3.csv("/Desktop/project-1-peya8291-master/data/anscombe_II.csv", function (error, data) {
+          d3.csv("/data/anscombe_II.csv", function (error, data) {
               //console.log(d3.min(data, function(d) { return d.value; }));
               //console.log(d3.max(data, function(d) { return d.value; }));
                  if (error) throw error;
@@ -175,7 +175,7 @@
         // Put your part two code here ***********************
 
           // Get the data
-          d3.csv("/Desktop/project-1-peya8291-master/data/anscombe_II.csv", function (error, data) {
+          d3.csv("/data/anscombe_II.csv", function (error, data) {
 
               if (error) throw error;
 
@@ -289,7 +289,7 @@
 });
 
 //************************copy partTwo code for partFour
-d3.csv("/Desktop/project-1-peya8291-master/data/anscombe_II.csv", function (error, data) {
+d3.csv("/data/anscombe_II.csv", function (error, data) {
     //console.log(d3.min(data, function(d) { return d.value; }));
     //console.log(d3.max(data, function(d) { return d.value; }));
        if (error) throw error;
