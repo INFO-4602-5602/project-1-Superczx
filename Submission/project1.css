@@ -1,6 +1,9 @@
 body {
     font-family: sans-serif;
     font-size: 11px;
+    background-image: url("https://www.planwallpaper.com/static/images/518164-backgrounds.jpg");
+    
+    background-color: lightblue;
 }
 
 .axis path,
